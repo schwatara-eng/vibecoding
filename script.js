@@ -17,7 +17,7 @@ const PROFILE = {
   headline: "최미라의 포트폴리오",
   bio: "AI를 배우는 출판편집자",
   photo: "images/눈물은행 사물 - 눈물은행 통장.png",  // 프로필 사진 주소. 예: "images/me.jpg" (비우면 이름 첫 글자가 보여요)
-  tags: ["그림", "만화", "영상", "글쓰기", "편집"],
+  tags: ["AI영상", "Opal"],
   email: "schwatara@email.com",
 };
 
@@ -37,7 +37,7 @@ const ABOUT = [
 
 // ---------- 분류 (필터 버튼 이름) ----------
 // 과제의 category와 글자가 똑같아야 필터가 작동해요.
-const CATEGORIES = ["그림", "만화", "영상", "기타"];
+const CATEGORIES = ["AI영상", "Opal", "기타"];
 
 // ---------- 과제 목록 ----------
 // 새 과제를 추가하려면 { ... }, 한 덩어리를 복사해서 붙여넣고 내용을 바꾸세요.
@@ -50,7 +50,7 @@ const CATEGORIES = ["그림", "만화", "영상", "기타"];
 const WORKS = [
   {
     title: "숫자로 보는 2026 아이치·나고야 아시안 게임",
-    category: "뉴스영상",
+    category: "AI영상",
     course: "AI 데이터 저널리즘",
     date: "2026.09",
     tools: "ChatGPT, Midjourney, CapCut",
@@ -63,64 +63,45 @@ const WORKS = [
   
 {
   title: "폭염 뉴스",
-  category: "뉴스영상",
+  category: "AI영상",
   course: "AI 데이터 저널리즘",
   date: "2026.09",
-  tools: "Synthesia",
-  intent: "폭염 날씨에 주의할 사항을 전해드립니다.",
-  process: "기획 구성(ChatGPT) → 스토리보드 및 대본 작성(ChatGPT) → 이미지 및 영상 생성(Midjourney) → TTS 및 아바타 영상 생성, 최종 편집(Synthesia)",
+  tools: "ChatGPT, Opal",
+  intent: "폭염 날씨에 주의해야 할 사항을 전해드립니다.",
+  process: "기획 구성(ChatGPT) → 스토리보드 및 대본 작성(ChatGPT) → 이미지 및 영상 생성(Midjourney) → TTS 및 아바타 생성, 최종편집(Synthesia)",
   embed: "https://share.synthesia.io/embeds/videos/9d52b5f7-c1e4-43e4-8d9d-e78d501b3fa5",
   images: ["images/폭염뉴스 썸네일.png"],
   file: ""
 },
 
-  {
-    title: "1분 탄소발자국",
-    category: "영상",
-    course: "영상 편집 기초",
-    date: "2026.05",
-    tools: "Premiere Pro, After Effects",
-    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
-    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
-    images: [],
-    file: ""
-  },
-  
-    {
-    title: "1분 탄소발자국",
-    category: "영상",
-    course: "영상 편집 기초",
-    date: "2026.05",
-    tools: "Premiere Pro, After Effects",
-    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
-    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
-    images: [],
-    file: ""
-  },
+{
+  title: "오늘의 록",
+  category: "Opal",
+  course: "AI 데이터 저널리즘",
+  date: "2026.09",
+  tools: "ChatGPT, Opal",
+  intent: "날씨와 기분을 입력하면 록 음악을 추천해드립니다.",
+  process: "",
+  embed: "",
+  app: "https://opal.google/app/19Qz_-HEzjVPXrvaiCMJ_6_gdYK8M1cHt",
+  images: ["images/오팔 오늘의록 썸네일.png"],
+  file: ""
+},
 
-    {
-    title: "1분 탄소발자국",
-    category: "영상",
-    course: "영상 편집 기초",
-    date: "2026.05",
-    tools: "Premiere Pro, After Effects",
-    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
-    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
-    images: [],
-    file: ""
-  },
+{
+  title: "프롬프트 주세요",
+  category: "Opal",
+  course: "AI 데이터 저널리즘",
+  date: "2026.09",
+  tools: "ChatGPT, Opal",
+  intent: "영상 주제와 길이, 무드를 입력하면 기획안과 스토리보드 작성, 이미지/영상/음성 프롬프트를 작성해드립니다.",
+  process: "",
+  embed: "",
+  app: "https://opal.google/app/1KDAnwK77UawewmbIfm5GUIc6k9XdSMod",
+  images: ["images/오팔 프롬프트주세요 썸네일.png"],
+  file: ""
+},
 
-    {
-    title: "1분 탄소발자국",
-    category: "영상",
-    course: "영상 편집 기초",
-    date: "2026.05",
-    tools: "Premiere Pro, After Effects",
-    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
-    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
-    images: [],
-    file: ""
-  },
 ];
 
 
@@ -330,6 +311,15 @@ function openDetail(index) {
     fileButton.style.display = "inline-block";
   } else {
     fileButton.style.display = "none";
+  }
+
+    // 앱 버튼: app 링크가 있을 때만 보이기 (Opal 등)
+  const appButton = document.getElementById("detail-app");
+  if (work.app) {
+    appButton.href = work.app;
+    appButton.style.display = "inline-block";
+  } else {
+    appButton.style.display = "none";
   }
 
   // 큰 이미지 (첫 번째 장)
