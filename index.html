@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>과제 포트폴리오</title>
+
+  <!-- 글꼴: 구글 폰트에서 IBM Plex Sans KR(본문), IBM Plex Mono(날짜)를 불러와요 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+  <!-- 디자인 파일 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================
+       ① 상단 메뉴 (스크롤해도 위에 붙어 있어요)
+       ============================================ -->
+  <header class="header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">
+        <span id="logo-name">이름</span>
+        <span class="logo-sub">Portfolio</span>
+      </a>
+      <nav class="menu">
+        <a href="#works">작품</a>
+        <a href="#about">소개</a>
+        <a href="#contact">연락처</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container" id="top">
+
+    <!-- ============================================
+         ② 자기소개 영역
+         (글자는 script.js의 PROFILE에서 채워 넣어요)
+         ============================================ -->
+    <section class="intro">
+      <div class="avatar" id="avatar"></div>
+      <div>
+        <h1 id="headline"></h1>
+        <p id="bio"></p>
+        <div class="intro-tags" id="intro-tags"></div>
+      </div>
+    </section>
+
+
+    <!-- ============================================
+         ③ 분류 필터 + ④ 과제 카드 목록
+         (버튼과 카드는 script.js가 자동으로 만들어요)
+         ============================================ -->
+    <section id="works">
+      <div class="section-title">
+        <h2>작품</h2>
+        <span class="work-count" id="work-count"></span>
+      </div>
+
+      <!-- 필터 버튼들이 여기에 들어가요 -->
+      <div class="filters" id="filters"></div>
+
+      <!-- 과제 카드들이 여기에 들어가요 -->
+      <div class="card-grid" id="card-grid"></div>
+    </section>
+
+
+    <!-- ============================================
+         소개 (사용 툴, 수강 과목, 관심 분야)
+         ============================================ -->
+    <section class="about" id="about">
+      <div class="section-title">
+        <h2>소개</h2>
+      </div>
+      <div class="about-grid" id="about-grid"></div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================
+       ⑤ 하단 (연락처)
+       ============================================ -->
+  <footer class="footer" id="contact">
+    <div class="container footer-inner">
+      <div class="contact-list" id="contact-list"></div>
+      <span>© 2026 <span id="footer-name"></span></span>
+    </div>
+  </footer>
+
+
+  <!-- ============================================
+       ⑥ 상세 보기 창
+       <dialog>는 평소엔 숨어 있다가, 카드를 누르면
+       script.js가 열어줘요.
+       ============================================ -->
+  <dialog class="detail" id="detail">
+    <button class="close-button" id="close-button" aria-label="닫기">×</button>
+
+    <div class="detail-inner">
+      <!-- 왼쪽: 이미지 -->
+      <div class="detail-images">
+        <div class="main-image" id="main-image"></div>
+        <div class="small-images" id="small-images"></div>
+      </div>
+
+      <!-- 오른쪽: 설명 -->
+      <div class="detail-text">
+        <span class="tag" id="detail-category"></span>
+        <h2 id="detail-title"></h2>
+
+        <dl class="facts">
+          <dt>과목</dt>    <dd id="detail-course"></dd>
+          <dt>제출일</dt>  <dd id="detail-date"></dd>
+          <dt>사용 툴</dt> <dd id="detail-tools"></dd>
+        </dl>
+
+        <h3>기획 의도</h3>
+        <p id="detail-intent"></p>
+
+        <h3>작업 과정</h3>
+        <p id="detail-process"></p>
+
+        <a class="file-button" id="detail-file" href="#" target="_blank">원본 파일 보기 ↗</a>
+
+        <div class="prev-next">
+          <button id="prev-button">← 이전 과제</button>
+          <button id="next-button">다음 과제 →</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+
+  <!-- 동작 파일 연결 (항상 body 맨 끝에 둬요) -->
+  <script src="script.js"></script>
+</body>
+</html>

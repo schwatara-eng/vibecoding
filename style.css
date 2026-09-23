@@ -1,0 +1,577 @@
+/* =========================================================
+   style.css — 페이지의 디자인(색, 글꼴, 배치)을 정하는 파일
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. 색상 모음 (변수)
+   여기 색만 바꾸면 페이지 전체 색이 한 번에 바뀌어요.
+   사용법: color: var(--글자색);
+   --------------------------------------------------------- */
+:root {
+  --배경색:       #F3EDE3;  /* 은은한 베이지 바탕 */
+  --카드색:       #FBF8F3;  /* 카드, 상세 창 바탕 */
+  --연한배경:     #EAE2D5;  /* 프로필 동그라미 등 */
+  --글자색:       #2A2724;  /* 기본 글자 */
+  --보조글자색:   #6B635A;  /* 설명 글자 */
+  --흐린글자색:   #9A9186;  /* 날짜, 작은 라벨 */
+  --선색:         #DDD3C4;  /* 구분선, 테두리 */
+  --포인트색:     #3E5C55;  /* 선택된 버튼 */
+  --포인트연한색: #DCE4DF;  /* 분류 태그 바탕 */
+
+  /* 이미지가 없을 때 보여줄 분류별 색 블록 */
+  --블록1: #C9B79C;
+  --블록2: #A9B8A6;
+  --블록3: #B7A7B2;
+  --블록4: #B3BFC9;
+}
+
+
+/* ---------------------------------------------------------
+   2. 기본 설정
+   --------------------------------------------------------- */
+* {
+  box-sizing: border-box; /* 너비 계산에 테두리, 안쪽 여백 포함 */
+}
+
+html {
+  scroll-behavior: smooth; /* 메뉴 누르면 부드럽게 스크롤 */
+}
+
+body {
+  margin: 0;
+  background: var(--배경색);
+  color: var(--글자색);
+  font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+a {
+  color: inherit; /* 링크도 주변 글자색을 따라가요 */
+}
+
+img {
+  max-width: 100%;
+}
+
+/* 내용 가운데 정렬 + 양옆 여백 */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+/* ---------------------------------------------------------
+   3. ① 상단 메뉴
+   --------------------------------------------------------- */
+.header {
+  position: sticky; /* 스크롤해도 위에 붙어 있게 */
+  top: 0;
+  z-index: 10;      /* 다른 요소보다 위에 보이게 */
+  background: var(--배경색);
+  border-bottom: 1px solid var(--선색);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between; /* 로고는 왼쪽, 메뉴는 오른쪽 */
+  align-items: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.logo-sub {
+  color: var(--흐린글자색);
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--보조글자색);
+}
+
+.menu a:hover {
+  color: var(--글자색);
+}
+
+
+/* ---------------------------------------------------------
+   4. ② 자기소개
+   --------------------------------------------------------- */
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-top: 56px;
+  padding-bottom: 44px;
+}
+
+.avatar {
+  flex-shrink: 0; /* 화면이 좁아도 동그라미가 찌그러지지 않게 */
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--연한배경);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--보조글자색);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.intro p {
+  margin: 0;
+  color: var(--보조글자색);
+  max-width: 60ch;
+}
+
+.intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.intro-tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--선색);
+  background: var(--카드색);
+  color: var(--보조글자색);
+}
+
+
+/* ---------------------------------------------------------
+   5. 섹션 제목 (작품, 소개)
+   --------------------------------------------------------- */
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--선색);
+  padding-top: 28px;
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.work-count {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  color: var(--흐린글자색);
+}
+
+
+/* ---------------------------------------------------------
+   6. ③ 분류 필터 버튼
+   --------------------------------------------------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filter-button {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--선색);
+  background: transparent;
+  color: var(--보조글자색);
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  border-color: var(--흐린글자색);
+  color: var(--글자색);
+}
+
+/* 지금 선택된 버튼 (script.js가 active 클래스를 붙여줘요) */
+.filter-button.active {
+  background: var(--포인트색);
+  border-color: var(--포인트색);
+  color: var(--카드색);
+}
+
+
+/* ---------------------------------------------------------
+   7. ④ 과제 카드
+   --------------------------------------------------------- */
+.card-grid {
+  display: grid;
+  /* 카드 최소 너비 280px, 화면 폭에 맞춰 한 줄에 1~3개 */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--카드색);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(60, 45, 30, 0.07);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px); /* 마우스 올리면 살짝 떠오름 */
+}
+
+/* 카드 윗부분 그림 영역 (가로 4 : 세로 3) */
+.card-image {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--보조글자색);
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+}
+
+.card-text {
+  padding: 14px 16px 16px;
+}
+
+.card-text h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--흐린글자색);
+}
+
+/* 분류 태그 (일러스트, 만화 …) */
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--포인트연한색);
+  color: var(--포인트색);
+}
+
+.empty-message {
+  color: var(--흐린글자색);
+  text-align: center;
+  padding: 40px 0;
+}
+
+
+/* ---------------------------------------------------------
+   8. 소개 섹션
+   --------------------------------------------------------- */
+.about {
+  padding-top: 64px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.about-grid h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--흐린글자색);
+}
+
+.about-grid ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.about-grid li {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+}
+
+.about-grid li span {
+  color: var(--흐린글자색);
+  font-size: 13px;
+}
+
+
+/* ---------------------------------------------------------
+   9. ⑤ 하단
+   --------------------------------------------------------- */
+.footer {
+  margin-top: 56px;
+  border-top: 1px solid var(--선색);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  font-size: 14px;
+  color: var(--보조글자색);
+}
+
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.contact-list a {
+  text-decoration: none;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+.copy-button {
+  font-family: inherit;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--선색);
+  background: transparent;
+  color: var(--보조글자색);
+  cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   10. ⑥ 상세 보기 창
+   --------------------------------------------------------- */
+.detail {
+  width: min(960px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  border: none;
+  border-radius: 18px;
+  background: var(--카드색);
+  color: var(--글자색);
+}
+
+/* 창 뒤의 어두운 배경 */
+.detail::backdrop {
+  background: rgba(30, 24, 18, 0.45);
+}
+
+.close-button {
+  float: right;
+  margin: 12px 12px 0 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--선색);
+  background: var(--카드색);
+  color: var(--보조글자색);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 왼쪽 이미지 : 오른쪽 설명 = 1.35 : 1 */
+.detail-inner {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  padding: 28px;
+}
+
+.main-image {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--보조글자색);
+  overflow: hidden;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 이미지 전체가 보이게 */
+  background: var(--연한배경);
+}
+
+.small-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.small-images img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+/* 지금 보고 있는 작은 이미지 */
+.small-images img.active {
+  border-color: var(--포인트색);
+}
+
+.detail-text h2 {
+  margin: 8px 0 4px;
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.detail-text h3 {
+  margin: 18px 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--흐린글자색);
+}
+
+.detail-text p {
+  margin: 0;
+  white-space: pre-line; /* 글 속 줄바꿈(\n)을 그대로 보여줌 */
+}
+
+/* 과목 / 제출일 / 사용 툴 표 */
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  margin: 16px 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--선색);
+  border-bottom: 1px solid var(--선색);
+  font-size: 14px;
+}
+
+.facts dt {
+  color: var(--흐린글자색);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.file-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--포인트색);
+  color: var(--카드색);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.prev-next {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.prev-next button {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--선색);
+  background: transparent;
+  color: var(--보조글자색);
+  cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   11. 휴대폰 화면 (폭 720px 이하)
+   --------------------------------------------------------- */
+@media (max-width: 720px) {
+  .intro {
+    flex-direction: column;  /* 사진과 글을 세로로 */
+    align-items: flex-start;
+    padding-top: 36px;
+    gap: 18px;
+  }
+
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 24px;
+  }
+
+  .menu {
+    gap: 14px;
+    font-size: 13px;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr; /* 카드 한 줄에 하나 */
+  }
+
+  .detail-inner {
+    grid-template-columns: 1fr; /* 이미지 위, 설명 아래 */
+    padding: 20px;
+    gap: 20px;
+  }
+}
