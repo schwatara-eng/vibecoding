@@ -24,10 +24,7 @@ const PROFILE = {
 // ---------- 소개 섹션 ----------
 // 각 항목은 [이름, 오른쪽에 작게 보일 글자] 형태예요.
 const ABOUT = [
-  {
-    title: "사용 툴",
-    items: [["MS Office", ""], ["한글", ""], ["Photoshop", ""], ["Indesign", ""],]
-  },
+
   {
     title: "수강 과목",
     items: [["MBC AI 데이터 저널리즘 전문가 과정", "2026. 9-12"]]
