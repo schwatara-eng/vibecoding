@@ -54,8 +54,8 @@ const WORKS = [
     course: "AI뉴스제작",
     date: "2026.09",
     tools: "ChatGPT, Midjourney, CapCut",
-    intent: "일회용 빨대가 바다 생물에게 남기는 흔적을 한 장의 포스터로 보여주고 싶었습니다.",
-    process: "레퍼런스 조사 → 러프 스케치 3안 → 색 조합 테스트 → 최종 채색\n배경은 단색으로 비워 메시지에 시선이 모이도록 했습니다.",
+    intent: "아시안 게임 개최 현황을 숫자를 통해 전해드립니다.",
+    process: "기획 구성(ChatGPT) → 스토리보드 및 대본 작성(ChatGPT) → 이미지 및 영상 생성(Midjourney) → TTS 생성(ElevenLabs) → 최종편집(CapCut)",
     youtube: "jJfDsHUsM2Q",
     images: ["images/숫자로 보는 아시안게임 썸네일.png"],
     file: ""
