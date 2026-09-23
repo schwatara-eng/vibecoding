@@ -50,8 +50,8 @@ const CATEGORIES = ["그림", "만화", "영상", "기타"];
 const WORKS = [
   {
     title: "숫자로 보는 2026 아이치·나고야 아시안 게임",
-    category: "영상",
-    course: "AI뉴스제작",
+    category: "뉴스영상",
+    course: "AI 데이터 저널리즘",
     date: "2026.09",
     tools: "ChatGPT, Midjourney, CapCut",
     intent: "아시안 게임 개최 현황을 숫자를 통해 전해드립니다.",
@@ -60,17 +60,20 @@ const WORKS = [
     images: ["images/숫자로 보는 아시안게임 썸네일.png"],
     file: ""
   },
-  {
-    title: "분리수거 요정 네 컷",
-    category: "만화",
-    course: "디지털 일러스트",
-    date: "2026.06",
-    tools: "Procreate",
-    intent: "헷갈리기 쉬운 분리배출 규칙을 캐릭터가 알려주는 네 컷 만화로 정리했습니다.",
-    process: "콘티 → 캐릭터 시트 → 선화 → 채색 → 말풍선 배치",
-    images: [],
-    file: ""
-  },
+  
+{
+  title: "폭염 뉴스",
+  category: "뉴스영상",
+  course: "AI 데이터 저널리즘",
+  date: "2026.09",
+  tools: "Synthesia",
+  intent: "폭염 날씨에 주의할 사항을 전해드립니다.",
+  process: "기획 구성(ChatGPT) → 스토리보드 및 대본 작성(ChatGPT) → 이미지 및 영상 생성(Midjourney) → TTS 및 아바타 영상 생성, 최종 편집(Synthesia)",
+  embed: "https://share.synthesia.io/embeds/videos/9d52b5f7-c1e4-43e4-8d9d-e78d501b3fa5",
+  images: ["images/폭염뉴스 썸네일.png"],
+  file: ""
+},
+
   {
     title: "1분 탄소발자국",
     category: "영상",
@@ -83,6 +86,41 @@ const WORKS = [
     file: ""
   },
   
+    {
+    title: "1분 탄소발자국",
+    category: "영상",
+    course: "영상 편집 기초",
+    date: "2026.05",
+    tools: "Premiere Pro, After Effects",
+    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
+    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
+    images: [],
+    file: ""
+  },
+
+    {
+    title: "1분 탄소발자국",
+    category: "영상",
+    course: "영상 편집 기초",
+    date: "2026.05",
+    tools: "Premiere Pro, After Effects",
+    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
+    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
+    images: [],
+    file: ""
+  },
+
+    {
+    title: "1분 탄소발자국",
+    category: "영상",
+    course: "영상 편집 기초",
+    date: "2026.05",
+    tools: "Premiere Pro, After Effects",
+    intent: "하루 일과 속 탄소 배출을 1분 모션 그래픽으로 설명했습니다.",
+    process: "스크립트 작성 → 스토리보드 → 에셋 제작 → 편집 및 사운드",
+    images: [],
+    file: ""
+  },
 ];
 
 
@@ -322,28 +360,37 @@ function openDetail(index) {
 }
 
 
-// 상세 창의 큰 화면 바꾸기 (영상이 있으면 영상, 없으면 이미지)
+// 상세 창의 큰 화면 바꾸기
+// embed 주소가 있으면 → 그 영상 (HeyGen, Synthesia 등)
+// youtube ID가 있으면 → 유튜브 영상
+// 둘 다 없으면 → 이미지
 function showMainImage(imageNumber) {
   const work = visibleWorks[currentIndex];
   const mainImage = document.getElementById("main-image");
   mainImage.style.background = getBlockColor(work.category);
 
-  if (work.youtube) {
-    // youtube 칸이 있으면 → 유튜브 영상 넣기
+  let videoAddress = "";
+  if (work.embed) {
+    videoAddress = work.embed;
+  } else if (work.youtube) {
+    videoAddress = "https://www.youtube.com/embed/" + work.youtube;
+  }
+
+  if (videoAddress) {
     mainImage.innerHTML = `
       <iframe
-        src="https://www.youtube.com/embed/${work.youtube}"
+        src="${videoAddress}"
         title="${work.title}"
-        allow="autoplay; encrypted-media; picture-in-picture"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
         allowfullscreen>
       </iframe>`;
   } else {
-    // 없으면 → 원래처럼 이미지
     mainImage.innerHTML = makeImageHTML(work, imageNumber);
   }
 
   markActiveSmallImage(imageNumber);
 }
+
 
 // 지금 보고 있는 작은 이미지에 테두리 표시
 function markActiveSmallImage(imageNumber) {
