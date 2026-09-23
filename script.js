@@ -13,13 +13,12 @@
 
 // ---------- 내 정보 ----------
 const PROFILE = {
-  name: "당최",
-  headline: "환경 이야기를 그림과 만화로 풀어냅니다",
-  bio: "캠페인 일러스트와 네 컷 만화를 중심으로, 한 학기 동안 작업한 과제물을 모아두었습니다.",
-  photo: "",  // 프로필 사진 주소. 예: "images/me.jpg" (비우면 이름 첫 글자가 보여요)
-  tags: ["시각디자인 전공", "2026년 2학기", "일러스트 · 만화 · 영상"],
-  email: "your@email.com",
-  instagram: "https://instagram.com/"
+  name: "최미라",
+  headline: "최미라의 포트폴리오",
+  bio: "AI를 배우는 출판편집자",
+  photo: "images/눈물은행 사물 - 눈물은행 통장.png",  // 프로필 사진 주소. 예: "images/me.jpg" (비우면 이름 첫 글자가 보여요)
+  tags: ["그림", "만화", "영상", "글쓰기", "편집"],
+  email: "schwatara@email.com",
 };
 
 // ---------- 소개 섹션 ----------
@@ -27,21 +26,18 @@ const PROFILE = {
 const ABOUT = [
   {
     title: "사용 툴",
-    items: [["Procreate", ""], ["Photoshop", ""], ["Illustrator", ""], ["Premiere Pro", ""]]
+    items: [["MS Office", ""], ["한글", ""], ["Photoshop", ""], ["Indesign", ""],]
   },
   {
     title: "수강 과목",
-    items: [["캠페인 디자인", "2026-2"], ["디지털 일러스트", "2026-1"], ["영상 편집 기초", "2026-1"]]
+    items: [["MBC AI 데이터 저널리즘 전문가 과정", "2026. 9-12"]]
   },
-  {
-    title: "관심 분야",
-    items: [["환경 캠페인", ""], ["공익 광고", ""], ["네 컷 만화", ""]]
-  }
+  
 ];
 
 // ---------- 분류 (필터 버튼 이름) ----------
 // 과제의 category와 글자가 똑같아야 필터가 작동해요.
-const CATEGORIES = ["일러스트", "만화", "영상", "기타"];
+const CATEGORIES = ["그림", "만화", "영상", "기타"];
 
 // ---------- 과제 목록 ----------
 // 새 과제를 추가하려면 { ... }, 한 덩어리를 복사해서 붙여넣고 내용을 바꾸세요.
@@ -53,14 +49,15 @@ const CATEGORIES = ["일러스트", "만화", "영상", "기타"];
 // process 안의 \n 은 줄바꿈이에요.
 const WORKS = [
   {
-    title: "바다가 삼킨 빨대",
-    category: "일러스트",
-    course: "캠페인 디자인",
+    title: "숫자로 보는 2026 아이치·나고야 아시안 게임",
+    category: "영상",
+    course: "AI뉴스제작",
     date: "2026.09",
-    tools: "Procreate, Photoshop",
+    tools: "ChatGPT, Midjourney, CapCut",
     intent: "일회용 빨대가 바다 생물에게 남기는 흔적을 한 장의 포스터로 보여주고 싶었습니다.",
     process: "레퍼런스 조사 → 러프 스케치 3안 → 색 조합 테스트 → 최종 채색\n배경은 단색으로 비워 메시지에 시선이 모이도록 했습니다.",
-    images: [],
+    youtube: "jJfDsHUsM2Q",
+    images: ["images/숫자로 보는 아시안게임 썸네일.png"],
     file: ""
   },
   {
@@ -85,39 +82,7 @@ const WORKS = [
     images: [],
     file: ""
   },
-  {
-    title: "숲의 숨소리",
-    category: "일러스트",
-    course: "디지털 일러스트",
-    date: "2026.04",
-    tools: "Procreate",
-    intent: "도시 속 작은 숲이 주는 쉼을 따뜻한 색감으로 표현했습니다.",
-    process: "현장 스케치 → 구도 정리 → 채색",
-    images: [],
-    file: ""
-  },
-  {
-    title: "텀블러 챌린지 캠페인 키트",
-    category: "기타",
-    course: "캠페인 디자인",
-    date: "2026.03",
-    tools: "Illustrator",
-    intent: "캠퍼스 텀블러 사용 캠페인을 위한 스티커, 배너, SNS 이미지를 한 세트로 만들었습니다.",
-    process: "슬로건 결정 → 로고타입 → 적용물 확장",
-    images: [],
-    file: ""
-  },
-  {
-    title: "지구가 보내는 편지",
-    category: "만화",
-    course: "캠페인 디자인",
-    date: "2026.03",
-    tools: "Procreate, Photoshop",
-    intent: "지구가 사람에게 편지를 쓰는 형식의 여섯 컷 만화입니다.",
-    process: "시나리오 → 콘티 → 선화 → 채색",
-    images: [],
-    file: ""
-  }
+  
 ];
 
 
@@ -357,15 +322,28 @@ function openDetail(index) {
 }
 
 
-// 상세 창의 큰 이미지 바꾸기
+// 상세 창의 큰 화면 바꾸기 (영상이 있으면 영상, 없으면 이미지)
 function showMainImage(imageNumber) {
   const work = visibleWorks[currentIndex];
   const mainImage = document.getElementById("main-image");
   mainImage.style.background = getBlockColor(work.category);
-  mainImage.innerHTML = makeImageHTML(work, imageNumber);
+
+  if (work.youtube) {
+    // youtube 칸이 있으면 → 유튜브 영상 넣기
+    mainImage.innerHTML = `
+      <iframe
+        src="https://www.youtube.com/embed/${work.youtube}"
+        title="${work.title}"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>`;
+  } else {
+    // 없으면 → 원래처럼 이미지
+    mainImage.innerHTML = makeImageHTML(work, imageNumber);
+  }
+
   markActiveSmallImage(imageNumber);
 }
-
 
 // 지금 보고 있는 작은 이미지에 테두리 표시
 function markActiveSmallImage(imageNumber) {
@@ -384,6 +362,11 @@ function markActiveSmallImage(imageNumber) {
 // 상세 창 버튼들 (닫기, 이전, 다음)
 // ---------------------------------------------------------
 const dialog = document.getElementById("detail");
+
+// 창이 닫히면 영상을 지워서 소리도 멈추게
+dialog.addEventListener("close", function () {
+  document.getElementById("main-image").innerHTML = "";
+});
 
 // × 버튼으로 닫기
 document.getElementById("close-button").addEventListener("click", function () {
